@@ -1,0 +1,20 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: cloud-dream-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zhangquansong/SpringcloudConfig/     # 配置git仓库的地址
+          search-paths: /**                             # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username: zhangquansong                                            # git仓库的账号（私有库必填）
+          password: songmei11.                                             # git仓库的密码（私有库必填）
+      label: master                                        #配置git仓库的分支
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/,http://admin:admin@localhost:8763/eureka/
+      defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/

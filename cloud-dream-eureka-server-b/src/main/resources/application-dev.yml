@@ -1,0 +1,19 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: cloud-dream-eureka-server-b
+#  security:
+#    user:
+#      name: admin
+#      password: admin
+#      roles: SUPERUSER
+eureka:
+  instance:
+    hostname: cloud-dream-eureka-server-b
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+#      defaultZone: http://admin:admin@cloud-dream-eureka-server-a:8761/eureka/,http://admin:admin@cloud-dream-eureka-server-c:8763/eureka/
+      defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
