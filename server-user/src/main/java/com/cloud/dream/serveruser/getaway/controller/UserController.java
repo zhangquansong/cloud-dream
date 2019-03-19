@@ -23,8 +23,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    /*@Value("${cloudDream}")
-    String cloudDream;*/
+    @Value("${cloudDream}")
+    String cloudDream;//springcloud-config-client从git中获取
 
     @Autowired
     private UserService userService;
@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/listAll")
     @ResponseBody
     public List<User> listAll() {
-//        log.info("cloudDream:{}", cloudDream);
+        log.info("cloudDream:{}", cloudDream);
         return userService.listAll();
     }
 
