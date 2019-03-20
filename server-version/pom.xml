@@ -29,6 +29,7 @@
         <mybatis.plus.version>2.1-gamma</mybatis.plus.version>
         <fastjson.version>1.2.31</fastjson.version>
         <mybatisplus.spring.boot.starter.version>1.0.5</mybatisplus.spring.boot.starter.version>
+        <cloud.dream.commons.utils.version>0.0.1-SNAPSHOT</cloud.dream.commons.utils.version>
 
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <dao.version>0.0.1-SNAPSHOT</dao.version>
@@ -121,6 +122,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud.dream</groupId>
+            <artifactId>cloud-dream-commons-utils</artifactId>
+            <version>${cloud.dream.commons.utils.version}</version>
         </dependency>
     </dependencies>
 

@@ -2,13 +2,11 @@ package com.cloud.dream.user;
 
 import com.cloud.dream.commons.utils.R;
 import com.cloud.dream.user.entity.User;
+import com.cloud.dream.user.feign.VersionFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +26,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private VersionFeign versionFeign;
 
     /**
      * @param
@@ -41,6 +41,14 @@ public class UserController {
     public R<List<User>> listAll() {
         log.info("cloudDream:{}", cloudDream);
         return R.successResponse(userService.listAll());
+    }
+
+    @GetMapping("/getCloudDream")
+    public R getCloudDream(@RequestParam String version) {
+        log.info("cloudDream:{},version:{}", cloudDream, version);
+        R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
+        log.info("cloudDreamVersion:{}", cloudDreamVersion);
+        return cloudDreamVersion;
     }
 
 

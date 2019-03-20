@@ -77,3 +77,7 @@ pagehelper:
 logging:
   level:
      com.cloud.dream.version: debug
+
+feign:
+  hystrix:
+    enabled: true #开启feign hystrix 断路器功能
