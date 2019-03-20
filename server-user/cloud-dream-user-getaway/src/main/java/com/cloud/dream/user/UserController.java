@@ -1,5 +1,6 @@
 package com.cloud.dream.user;
 
+import com.cloud.dream.commons.utils.R;
 import com.cloud.dream.user.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class UserController {
      **/
     @GetMapping("/listAll")
     @ResponseBody
-    public List<User> listAll() {
+    public R<List<User>> listAll() {
         log.info("cloudDream:{}", cloudDream);
-        return userService.listAll();
+        return R.successResponse(userService.listAll());
     }
 
 
