@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private VersionFeign versionFeign;
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * @param
@@ -48,7 +51,8 @@ public class UserController {
         log.info("cloudDream:{},version:{}", cloudDream, version);
         R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
         log.info("cloudDreamVersion:{}", cloudDreamVersion);
-        return cloudDreamVersion;
+        R<User> userR = restTemplate.getForObject("http://cloud-dream-server-version/user/getCloudDream?version=1", R.class);
+        return userR;
     }
 
 
