@@ -51,6 +51,11 @@ eureka:
 zipkin:
   storage:
     type: mysql
+  collector:
+    rabbitmq:
+      addresses: localhost
+#      username: lbl
+#      password: 123456
 
 management:
   metrics:

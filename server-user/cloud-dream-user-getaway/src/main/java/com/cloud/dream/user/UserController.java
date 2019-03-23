@@ -51,8 +51,9 @@ public class UserController {
         log.info("cloudDream:{},version:{}", cloudDream, version);
         R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
         log.info("cloudDreamVersion:{}", cloudDreamVersion);
-        R<User> userR = restTemplate.getForObject("http://cloud-dream-server-version/user/getCloudDream?version=1", R.class);
-        return userR;
+//        R<User> userR = restTemplate.getForObject("http://127.0.0.1:8783/user/getCloudDream?version=1", R.class);
+//        R<User> userR = restTemplate.getForObject("http://cloud-dream-server-version/user/getCloudDream?version=1", R.class);
+        return cloudDreamVersion;
     }
 
 
