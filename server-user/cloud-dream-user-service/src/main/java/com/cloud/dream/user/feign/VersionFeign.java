@@ -2,6 +2,8 @@ package com.cloud.dream.user.feign;
 
 import com.cloud.dream.commons.utils.R;
 import com.cloud.dream.user.feign.impl.VersionFeignImpl;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

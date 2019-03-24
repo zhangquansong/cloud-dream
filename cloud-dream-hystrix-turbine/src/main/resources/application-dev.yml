@@ -1,0 +1,29 @@
+server:
+  port: 8764
+
+spring:
+  application:
+    name: cloud-dream-hystrix-turbine
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+
+turbine:
+  app-config: cloud-dream-server-user,cloud-dream-server-version
+  aggregator:
+    clusterConfig: default
+  clusterNameExpression: new String("default")
+  combine-host: true
+  instanceUrlSuffix:
+    default: actuator/hystrix.stream

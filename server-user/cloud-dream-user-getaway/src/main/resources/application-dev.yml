@@ -99,3 +99,12 @@ logging:
 feign:
   hystrix:
     enabled: true #开启feign hystrix 断路器功能
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
