@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: server_user_path_route
+          uri: lb://cloud-dream-server-user #http://localhost:8782
+          order: 0
+          predicates:
+            - Path=/user/**
+        - id: server_version_path_route
+          uri: lb://cloud-dream-server-version #http://localhost:8782
+          order: 0
+          predicates:
+            - Path=/version/user/**
+          filters:
+            - StripPrefix=1
+#    config:
+#      uri: http://localhost:8888/
+#      label: master
+#      profile: dev
+#    bus:
+#      enabled: true
+#      trace:
+#        enabled: true
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
