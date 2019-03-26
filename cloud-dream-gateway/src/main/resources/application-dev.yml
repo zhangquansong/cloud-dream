@@ -42,11 +42,11 @@ spring:
     sleuth:
       sampler:
         percentage: 1.0
-#    sender:
-#      type: rabbit
-#    rabbitmq:
-#      host: localhost
-#      port: 5672
+    sender:
+      type: rabbit
+    rabbitmq:
+      host: localhost
+      port: 5672
 #      username: lbl
 #      password: 123456
       listener: # 这里配置了重试策略
@@ -96,10 +96,10 @@ logging:
   level:
      com.cloud.dream.gateway: debug
 
-#feign:
-#  hystrix:
-#    enabled: true #开启feign hystrix 断路器功能
-#
+feign:
+  hystrix:
+    enabled: true #开启feign hystrix 断路器功能
+
 management:
   endpoints:
     web:
