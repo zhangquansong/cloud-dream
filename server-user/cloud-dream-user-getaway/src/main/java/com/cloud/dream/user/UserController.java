@@ -53,20 +53,21 @@ public class UserController {
 //            fallbackMethod = "xx方法",
             threadPoolKey = "getCloudDreamVersionThreadPool",
             threadPoolProperties = {
-                    @HystrixProperty(name = "coreSize",value = "30"),
-                    @HystrixProperty(name = "maxQueueSize",value = "10")
+                    @HystrixProperty(name = "coreSize", value = "30"),
+                    @HystrixProperty(name = "maxQueueSize", value = "10")
             },
             commandProperties = {
-                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),
-                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "75"),
-                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "7000"),
-                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds",value = "150000"),
-                    @HystrixProperty(name = "metrics.rollingStats.numBuckets",value = "5"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "75"),
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "7000"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "150000"),
+                    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "5"),
             }
     )
     @GetMapping("/getCloudDream")
-    public R getCloudDream(@RequestParam String version) {
+    public R getCloudDream(@RequestParam String version, @RequestHeader String user) {
         log.info("cloudDream:{},version:{}", cloudDream, version);
+//        userService.saveUser();
         R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
         log.info("cloudDreamVersion:{}", cloudDreamVersion);
 //        R<User> userR = restTemplate.getForObject("http://127.0.0.1:8783/user/getCloudDream?version=1", R.class);

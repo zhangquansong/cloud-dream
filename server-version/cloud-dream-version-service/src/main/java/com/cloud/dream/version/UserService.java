@@ -22,4 +22,5 @@ public interface UserService extends IService<User> {
      **/
     List<User> listAll();
 
+    void saveUser();
 }

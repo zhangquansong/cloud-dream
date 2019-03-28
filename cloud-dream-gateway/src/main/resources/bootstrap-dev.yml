@@ -7,6 +7,12 @@ spring:
           order: 0
           predicates:
             - Path=/user/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@hostAddrKeyResolver}'
+                redis-rate-limiter.replenishRate: 1 #允许用户每秒处理多少个请求
+                redis-rate-limiter.burstCapacity: 1 #令牌桶的容量，允许在一秒钟内完成的最大请求数
         - id: server_version_path_route
           uri: lb://cloud-dream-server-version #http://localhost:8782
           order: 0
@@ -14,6 +20,11 @@ spring:
             - Path=/version/user/**
           filters:
             - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@hostAddrKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
     config:
       uri: http://localhost:8888/
       label: master
@@ -25,6 +36,13 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
+  redis:
+    host: "redis://127.0.0.1:6379" #127.0.0.1
+    port: 6379
+    database: 0
+    cluster:
+      nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+#    password: 123456
 management:
   endpoints:
     web:

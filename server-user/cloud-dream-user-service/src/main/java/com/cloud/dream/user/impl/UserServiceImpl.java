@@ -37,4 +37,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.selectList(null);
     }
 
+    @Override
+    public void saveUser(){
+        User user=new User();
+        user.setUserLoginName("11");
+        user.setUserName("22");
+        this.insert(user);
+    }
+
 }

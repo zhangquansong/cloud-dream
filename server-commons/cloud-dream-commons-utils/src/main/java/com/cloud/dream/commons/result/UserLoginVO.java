@@ -1,10 +1,5 @@
-package com.clt.api.result;
+package com.cloud.dream.commons.result;
 
-import com.clt.api.annotation.DecryptFiled;
-import com.clt.api.annotation.SensitiveInfo;
-import com.clt.api.security.DESEncryptType;
-import com.clt.api.security.SensitiveType;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,15 +12,12 @@ import java.util.Date;
  * @Description :用户登录返回vo
  **/
 @Data
-@JsonIgnoreProperties(value = {"id", "expireTime"})
 public class UserLoginVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String userLoginName;
-    @DecryptFiled(DESEncryptType.USER_NAME)
-    @SensitiveInfo(SensitiveType.CHINESE_NAME)
     private String userName;
     private String userPhone;
     private Integer userSex;

@@ -1,4 +1,4 @@
-package com.clt.api.exception;
+package com.cloud.dream.commons.exception;
 
 /**
  * @ClassName : CaptchaServiceException

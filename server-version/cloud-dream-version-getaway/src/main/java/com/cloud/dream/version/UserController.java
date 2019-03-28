@@ -7,6 +7,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -63,6 +64,8 @@ public class UserController {
     @GetMapping("/getCloudDream")
     public R getCloudDream(@RequestParam String version) {
         log.info("cloudDream:{},version:{}", cloudDream, version);
+//        int i=1/0;
+//        userService.saveUser();
         List<User> users = userService.listAll();
 //        R<User> userR = restTemplate.getForObject("http://cloud-dream-server-user/user/getCloudDream?version=1", R.class);
         return R.successResponse(users);
