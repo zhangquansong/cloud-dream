@@ -1,8 +1,10 @@
 import com.cloud.dream.commons.CommonsRedisApplication;
+import com.cloud.dream.commons.redis.RedisUtils;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.junit.Test;
 
 /**
  * @ClassName : Test
@@ -12,11 +14,14 @@ import org.junit.Test;
  **/
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {CommonsRedisApplication.class})// 指定启动类
-public class Test {
+public class RedisTest {
 
+    @Autowired
+    private RedisUtils redisUtils;
 
     @Test
     public void testRedisAdd() {
-
+//        RedisUtils redisUtils = new RedisUtils();
+        redisUtils.set(String.valueOf(Math.random()), String.valueOf(Math.random()));
     }
 }

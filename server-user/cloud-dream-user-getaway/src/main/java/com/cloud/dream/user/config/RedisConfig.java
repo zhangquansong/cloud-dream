@@ -1,4 +1,4 @@
-package com.cloud.dream.commons.config;
+package com.cloud.dream.user.config;
 
 import com.cloud.dream.commons.redis.RedissLock;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -35,17 +35,17 @@ public class RedisConfig {
     @Autowired
     private RedisConnectionFactory factory;
 
-    @Value("${spring.redis.cluster.nodes}")
+    @Value("${redis.cluster.nodes}")
     private String clusterNodes;
-    @Value("${spring.redisson.address}")
+    @Value("${redisson.address}")
     private String address;
-    @Value("${spring.redis.timeout}")
+    @Value("${redis.timeout}")
     private int timeout;
-    @Value("${spring.redis.pool.max-idle}")
+    @Value("${redis.pool.max-idle}")
     private int maxIdle;
-    @Value("${spring.redis.pool.max-wait}")
+    @Value("${redis.pool.max-wait}")
     private long maxWaitMillis;
-    @Value("${spring.redis.commandTimeout}")
+    @Value("${redis.commandTimeout}")
     private int commandTimeout;
 
     @Bean

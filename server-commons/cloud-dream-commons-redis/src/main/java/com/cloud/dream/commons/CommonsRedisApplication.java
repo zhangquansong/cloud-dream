@@ -1,7 +1,11 @@
 package com.cloud.dream.commons;
 
-public class CommonsUtilsApplication {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CommonsRedisApplication {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        SpringApplication.run(CommonsRedisApplication.class, args);
     }
 }

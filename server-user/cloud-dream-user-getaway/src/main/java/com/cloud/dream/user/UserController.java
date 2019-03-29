@@ -1,5 +1,6 @@
 package com.cloud.dream.user;
 
+import com.cloud.dream.commons.redis.RedisUtils;
 import com.cloud.dream.commons.utils.R;
 import com.cloud.dream.user.entity.User;
 import com.cloud.dream.user.feign.VersionFeign;
@@ -34,6 +35,8 @@ public class UserController {
     private VersionFeign versionFeign;
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private RedisUtils redisUtils;
 
     /**
      * @param
@@ -67,6 +70,8 @@ public class UserController {
     @GetMapping("/getCloudDream")
     public R getCloudDream(@RequestParam String version, @RequestHeader String user) {
         log.info("cloudDream:{},version:{}", cloudDream, version);
+        boolean b=redisUtils.set(String.valueOf(Math.random()),String.valueOf(Math.random()));
+        System.out.println(b+">>>>>>>>>>>>>>");
 //        userService.saveUser();
         R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
         log.info("cloudDreamVersion:{}", cloudDreamVersion);

@@ -99,9 +99,14 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.cloud.dream</groupId>
             <artifactId>cloud-dream-commons-utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.cloud.dream</groupId>
+            <artifactId>cloud-dream-commons-redis</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>-->
     </dependencies>

@@ -1,4 +1,4 @@
-package com.cloud.dream.commons.config;
+package com.cloud.dream.user.config;
 
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -14,11 +14,11 @@ import java.lang.reflect.Method;
  * @Date : 2019/1/11 0011下午 7:01
  * @Description :
  **/
-@Configuration
-@EnableCaching
-public class RedisCacheConfig extends CachingConfigurerSupport {
+//@Configuration
+//@EnableCaching
+public class RedisCacheConfig /*extends CachingConfigurerSupport*/ {
 
-    @Bean
+    /*@Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
             public Object generate(Object target, Method method, Object... objects) {
@@ -31,7 +31,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                 return sb.toString();
             }
         };
-    }
+    }*/
 
    /* @Bean
     public CacheManager cacheManager(@SuppressWarnings("rawtypes") RedisTemplate redisTemplate) {

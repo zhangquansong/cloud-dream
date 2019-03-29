@@ -1,9 +1,9 @@
-package com.clt.api.utils;
+package com.cloud.dream.commons.redis;
 
-import com.clt.api.mq.RewardMq;
-import com.clt.api.result.UserLoginVO;
-import com.clt.api.sender.RabbitAckSender;
-import org.apache.commons.lang.StringUtils;
+import com.cloud.dream.commons.result.UserLoginVO;
+import com.cloud.dream.commons.utils.Constants;
+import com.cloud.dream.commons.utils.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
@@ -30,8 +30,6 @@ public class RedisExtendUtils {
 
     @Autowired
     RedisUtils redisUtils;
-    @Autowired
-    private RabbitAckSender rabbitAckSender;
 
     /**
      * 登录token操作
@@ -50,8 +48,6 @@ public class RedisExtendUtils {
         redisUtils.hmsetToken(String.valueOf(user.getId()), map);
         user.setExpireTime(DateUtils.addDay(new Date(), Constants.INTEGER_VALUE_1));
         redisUtils.setToken(token, user);
-        RewardMq rewardMq = new RewardMq(user.getId(), user.getUserPhone(), String.valueOf(user.getUserType()), "用户登录奖励");
-        rabbitAckSender.sendReward(rewardMq);
     }
 
     /**

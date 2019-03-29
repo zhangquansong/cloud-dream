@@ -1,7 +1,8 @@
-package com.clt.api.utils;
+package com.cloud.dream.commons.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.dream.commons.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.*;

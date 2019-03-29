@@ -1,5 +1,6 @@
 package com.cloud.dream.user;
 
+import com.cloud.dream.commons.redis.RedisUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,5 +33,10 @@ public class UserGetawayApplication {
     @LoadBalanced
     RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public RedisUtils getRedisUtils() {
+        return new RedisUtils();
     }
 }
