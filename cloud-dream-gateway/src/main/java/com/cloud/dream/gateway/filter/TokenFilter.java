@@ -1,6 +1,9 @@
 package com.cloud.dream.gateway.filter;
 
+import com.cloud.dream.commons.utils.DateUtils;
+import com.cloud.dream.gateway.uitls.RedisUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -9,6 +12,8 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+
+import java.util.Date;
 
 /**
  * @ClassName : TokenFilter
@@ -23,6 +28,8 @@ public class TokenFilter implements GlobalFilter, Ordered {
     String oauthTokenUrl;
     @Value("${access_token_name}")
     String accessToken;
+    @Autowired
+    private RedisUtils redisUtils;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -47,4 +54,5 @@ public class TokenFilter implements GlobalFilter, Ordered {
     public int getOrder() {
         return 0;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.cloud.dream.user.config;
+package com.cloud.dream.gateway.config;
 
 import com.cloud.dream.commons.redis.RedissLock;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -37,16 +37,16 @@ public class RedisConfig {
 
     @Value("${spring.redis.cluster.nodes}")
     private String clusterNodes;
-    @Value("${spring.redisson.address}")
-    private String address;
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-    @Value("${spring.redis.lettuce.pool.max-idle}")
-    private int maxIdle;
-    @Value("${spring.redis.lettuce.pool.max-wait}")
-    private long maxWaitMillis;
-    @Value("${spring.redis.commandTimeout}")
-    private int commandTimeout;
+//    @Value("${spring.redisson.address}")
+//    private String address;
+//    @Value("${spring.redis.timeout}")
+//    private int timeout;
+//    @Value("${spring.redis.lettuce.pool.max-idle}")
+//    private int maxIdle;
+//    @Value("${spring.redis.lettuce.pool.max-wait}")
+//    private long maxWaitMillis;
+//    @Value("${spring.redis.commandTimeout}")
+//    private int commandTimeout;
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
@@ -108,36 +108,5 @@ public class RedisConfig {
 
         //可通过打印redisson.getConfig().toJSON().toString()来检测是否配置成功
         return redisson;
-    }
-
-    /**
-     * @param redissonClient
-     * @return com.clt.api.utils.RedissLock
-     * @Author zhangquansong
-     * @Date 2019/1/5 0005 下午 3:26
-     * @Description :装配locker类，并将实例注入到RedissLockUtil中
-     **/
-    @Bean
-    public RedissLock distributedLocker(RedissonClient redissonClient) {
-        RedissLock locker = new RedissLock();
-        locker.setRedissonClient(redissonClient);
-        return locker;
-    }
-
-    @Bean
-    public JedisCluster getJedisCluster() {
-        String[] cNodes = clusterNodes.split(",");
-        Set<HostAndPort> nodes = new HashSet<>();
-        //分割出集群节点
-        for (String node : cNodes) {
-            String[] hp = node.split(":");
-            nodes.add(new HostAndPort(hp[0], Integer.parseInt(hp[1])));
-        }
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxIdle(maxIdle);
-        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
-        //创建集群对象
-        // JedisCluster jedisCluster = new JedisCluster(nodes,commandTimeout);
-        return new JedisCluster(nodes, commandTimeout, jedisPoolConfig);
     }
 }

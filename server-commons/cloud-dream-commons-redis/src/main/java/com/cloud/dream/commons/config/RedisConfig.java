@@ -41,9 +41,9 @@ public class RedisConfig {
     private String address;
     @Value("${spring.redis.timeout}")
     private int timeout;
-    @Value("${spring.redis.pool.max-idle}")
+    @Value("${spring.redis.lettuce.pool.max-idle}")
     private int maxIdle;
-    @Value("${spring.redis.pool.max-wait}")
+    @Value("${spring.redis.lettuce.pool.max-wait}")
     private long maxWaitMillis;
     @Value("${spring.redis.commandTimeout}")
     private int commandTimeout;
@@ -90,13 +90,6 @@ public class RedisConfig {
     public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForZSet();
     }
-
-    /*@Bean
-    public RedissonClient redissonClient() throws IOException {
-        Config config = new Config();
-        config.useSingleServer().setAddress(address)*//*.setPassword(password)*//*;
-        return Redisson.create(config);
-    }*/
 
     @Bean
     public RedissonClient getRedisson() {

@@ -1,9 +1,13 @@
 package com.cloud.dream.user;
 
 import com.cloud.dream.commons.redis.RedisUtils;
+import com.cloud.dream.commons.redis.RedissLock;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -24,7 +28,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 @EnableFeignClients
 @EnableHystrixDashboard
-public class UserGetawayApplication {
+public class UserGetawayApplication  {
     public static void main(String[] args) {
         SpringApplication.run(UserGetawayApplication.class, args);
     }
@@ -35,8 +39,10 @@ public class UserGetawayApplication {
         return new RestTemplate();
     }
 
+
     @Bean
-    public RedisUtils getRedisUtils() {
-        return new RedisUtils();
-    }
+    RedisUtils redisUtils(){return new RedisUtils();}
+
+    @Bean
+    RedissLock redissLock(){return new RedissLock();}
 }
