@@ -16,7 +16,7 @@ public class UserLoginVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long userId;
     private String userLoginName;
     private String userName;
     private String userPhone;

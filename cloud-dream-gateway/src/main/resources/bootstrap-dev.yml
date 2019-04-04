@@ -13,6 +13,7 @@ spring:
                 key-resolver: '#{@hostAddrKeyResolver}'
                 redis-rate-limiter.replenishRate: 1 #允许用户每秒处理多少个请求
                 redis-rate-limiter.burstCapacity: 1 #令牌桶的容量，允许在一秒钟内完成的最大请求数
+            - RequestTime=true #开启AuthorizeGatewayFilterFactory
         - id: server_version_path_route
           uri: lb://cloud-dream-server-version #http://localhost:8782
           order: 0

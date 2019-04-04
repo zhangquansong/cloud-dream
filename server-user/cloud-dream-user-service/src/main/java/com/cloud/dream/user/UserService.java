@@ -23,4 +23,21 @@ public interface UserService extends IService<User> {
     List<User> listAll();
 
     void saveUser();
+
+    /**
+     * 根据登录名和密码查询可用用户信息
+     *
+     * @param loginName 登录名
+     * @param password  密码
+     * @return
+     */
+    User findUserByLoginNameAndPassword(String loginName, String password);
+
+    /**
+     * 根据用户id查询可用用户信息
+     *
+     * @param userId 用户id
+     * @return
+     */
+    User findUserByUserId(Long userId);
 }

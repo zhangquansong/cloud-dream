@@ -1,7 +1,10 @@
-package com.cloud.dream.user;
+package com.cloud.dream.user.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.dream.commons.redis.RedisUtils;
+import com.cloud.dream.commons.result.UserLoginVO;
 import com.cloud.dream.commons.utils.R;
+import com.cloud.dream.user.UserService;
 import com.cloud.dream.user.entity.User;
 import com.cloud.dream.user.feign.VersionFeign;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -52,6 +55,12 @@ public class UserController {
         return R.successResponse(userService.listAll());
     }
 
+    @GetMapping("/findUserByUserId/{userId}")
+    @ResponseBody
+    public R<User> listAll(@PathVariable("userId") Long userId) {
+        return R.successResponse(userService.findUserByUserId(userId));
+    }
+
     @HystrixCommand(
 //            fallbackMethod = "xx方法",
             threadPoolKey = "getCloudDreamVersionThreadPool",
@@ -70,9 +79,8 @@ public class UserController {
     @GetMapping("/getCloudDream")
     public R getCloudDream(@RequestParam String version, @RequestHeader String user) {
         log.info("cloudDream:{},version:{}", cloudDream, version);
-        boolean b=redisUtils.set(String.valueOf(Math.random()),String.valueOf(Math.random()));
-        System.out.println(b+">>>>>>>>>>>>>>");
-//        userService.saveUser();
+        UserLoginVO userLoginVO = JSONObject.parseObject(user, UserLoginVO.class);
+        System.out.println(userLoginVO);
         R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
         log.info("cloudDreamVersion:{}", cloudDreamVersion);
 //        R<User> userR = restTemplate.getForObject("http://127.0.0.1:8783/user/getCloudDream?version=1", R.class);

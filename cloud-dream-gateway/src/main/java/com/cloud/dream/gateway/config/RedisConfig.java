@@ -1,12 +1,8 @@
 package com.cloud.dream.gateway.config;
 
-import com.cloud.dream.commons.redis.RedissLock;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.redisson.Redisson;
-import org.redisson.api.RedissonClient;
-import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,13 +11,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import redis.clients.jedis.HostAndPort;
-import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.net.UnknownHostException;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @ClassName : RedisConfig
@@ -91,7 +82,7 @@ public class RedisConfig {
         return redisTemplate.opsForZSet();
     }
 
-    @Bean
+    /*@Bean
     public RedissonClient getRedisson() {
         String[] nodes = clusterNodes.split(",");
         //redisson版本是3.5，集群的ip前面要加上“redis://”，不然会报错，3.2版本可不加
@@ -103,10 +94,10 @@ public class RedisConfig {
         config.useClusterServers() //这是用的集群server
                 .setScanInterval(2000) //设置集群状态扫描时间
                 .addNodeAddress(nodes)
-        /*.setPassword(password)*/;
+        *//*.setPassword(password)*//*;
         redisson = Redisson.create(config);
 
         //可通过打印redisson.getConfig().toJSON().toString()来检测是否配置成功
         return redisson;
-    }
+    }*/
 }

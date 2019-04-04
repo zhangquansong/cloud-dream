@@ -1,5 +1,6 @@
 package com.cloud.dream.gateway;
 
+import com.cloud.dream.gateway.filter.RequestTimeGatewayFilterFactory;
 import com.cloud.dream.gateway.resolve.HostAddrKeyResolver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -46,5 +47,15 @@ public class CloudDreamGatewayApplication {
     public HostAddrKeyResolver hostAddrKeyResolver() {
         return new HostAddrKeyResolver();
     }
+
+    @Bean
+    public RequestTimeGatewayFilterFactory elapsedGatewayFilterFactory() {
+        return new RequestTimeGatewayFilterFactory();
+    }
+
+   /* @Bean
+    RedisUtils redisUtils() {
+        return new RedisUtils();
+    }*/
 
 }
