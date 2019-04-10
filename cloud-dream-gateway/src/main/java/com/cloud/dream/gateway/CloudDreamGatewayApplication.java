@@ -1,7 +1,7 @@
 package com.cloud.dream.gateway;
 
+import com.cloud.dream.gateway.filter.LimitFilter;
 import com.cloud.dream.gateway.filter.RequestTimeGatewayFilterFactory;
-import com.cloud.dream.gateway.resolve.HostAddrKeyResolver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +16,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.time.Duration;
 
 @SpringBootApplication
 @RestController
@@ -33,6 +35,12 @@ public class CloudDreamGatewayApplication {
 
     @Value("${cloudDream}")
     String cloudDream;//springcloud-config-client从git中获取
+    @Value("${capacity}")
+    int capacity;
+    @Value("${refillTokens}")
+    int refillTokens;
+    @Value("${refillDuration}")
+    int refillDuration;
 
     @Bean
     @LoadBalanced
@@ -45,14 +53,26 @@ public class CloudDreamGatewayApplication {
         return new TokenFilter();
     }*/
 
-    @Bean
+    /*@Bean
     public HostAddrKeyResolver hostAddrKeyResolver() {
         return new HostAddrKeyResolver();
-    }
+    }*/
 
     @Bean
     public RequestTimeGatewayFilterFactory elapsedGatewayFilterFactory() {
         return new RequestTimeGatewayFilterFactory();
+    }
+
+    @Bean
+    public RouteLocator customerRouteLocator(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route(r -> r.path("/CLOUD-DREAM-SERVER-USER/user/**")
+                        .filters(f -> f.stripPrefix(1)
+                                .filter(new LimitFilter(capacity, refillTokens, Duration.ofSeconds(refillDuration))))
+                        .uri("lb://cloud-dream-server-user")
+                        .order(0)
+                        .id("server_user_path_route")
+                ).build();
     }
 
    /* @Bean

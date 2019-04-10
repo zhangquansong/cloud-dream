@@ -51,6 +51,9 @@ public class R<T> implements Serializable {
         return new R(code, message);
     }
 
+    public static <T> R<T> errorResponse(String code, String message) {
+        return new R(Integer.valueOf(code), message);
+    }
 
     public Integer getCode() {
         return code;
