@@ -26,6 +26,8 @@ import java.time.Duration;
 @EnableDiscoveryClient
 @EnableHystrix
 @EnableFeignClients
+//@EnableOAuth2Sso
+//@EnableWebFluxSecurity
 //@EnableHystrixDashboard
 public class CloudDreamGatewayApplication {
 

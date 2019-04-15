@@ -125,3 +125,10 @@ management:
       cors:
         allowed-origins: "*"
         allowed-methods: "*"
+
+#security:
+#  oauth2:
+#    resource:
+#      id: cloud-dream-server-user
+#      user-info-uri: http://localhost:8095/auth/api/member
+#      prefer-token-info: false

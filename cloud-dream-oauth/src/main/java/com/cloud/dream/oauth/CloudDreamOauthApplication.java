@@ -1,4 +1,4 @@
-package com.cloud.dream.user;
+package com.cloud.dream.oauth;
 
 import com.cloud.dream.commons.redis.RedisExtendUtils;
 import com.cloud.dream.commons.redis.RedisUtils;
@@ -14,23 +14,22 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@RestController
-@MapperScan(basePackages = {"com.cloud.dream.user.mapper"})
+@EnableAuthorizationServer
+@MapperScan(basePackages = {"com.cloud.dream.oauth.mapper"})
 @EnableEurekaClient
 @RefreshScope
 @EnableDiscoveryClient
 @EnableHystrix
 @EnableFeignClients
 @EnableHystrixDashboard
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class UserGetawayApplication {
+public class CloudDreamOauthApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(UserGetawayApplication.class, args);
+        SpringApplication.run(CloudDreamOauthApplication.class, args);
     }
 
     @Bean
@@ -54,4 +53,5 @@ public class UserGetawayApplication {
     RedissLock redissLock() {
         return new RedissLock();
     }
+
 }

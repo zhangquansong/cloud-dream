@@ -108,3 +108,13 @@ management:
       cors:
         allowed-origins: "*"
         allowed-methods: "*"
+
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: http://localhost:${server.port}/CLOUD-DREAM-OAUTH/oauth/token
+#      user-authorization-uri: http://localhost:${server.port}/CLOUD-DREAM-OAUTH/oauth/authorize
+#      client-id: cloud-dream-gateway
+#    resource:
+#      user-info-uri:  http://localhost:${server.port}/CLOUD-DREAM-OAUTH/api/member
+#      prefer-token-info: false
