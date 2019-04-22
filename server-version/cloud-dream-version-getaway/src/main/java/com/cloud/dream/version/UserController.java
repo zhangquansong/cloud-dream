@@ -65,7 +65,7 @@ public class UserController {
     public R getCloudDream(@RequestParam String version) {
         log.info("cloudDream:{},version:{}", cloudDream, version);
 //        int i=1/0;
-//        userService.saveUser();
+        userService.saveUser();
         List<User> users = userService.listAll();
 //        R<User> userR = restTemplate.getForObject("http://cloud-dream-server-user/user/getCloudDream?version=1", R.class);
         return R.successResponse(users);

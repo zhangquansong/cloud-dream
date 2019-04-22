@@ -170,6 +170,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.cloud.dream</groupId>
+            <artifactId>cloud-dream-fescar</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +18,6 @@ import java.util.List;
  * @Description :用户基本CURD操作实现类
  **/
 @Service
-@Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
 
@@ -37,11 +37,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.selectList(null);
     }
 
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void saveUser(){
-        User user=new User();
+    public void saveUser() {
+        User user = new User();
         user.setUserLoginName("11");
-        user.setUserName("22");
+        user.setUserName("22version" + new Date());
         this.insert(user);
+        throw new RuntimeException("我就是故意出错");
     }
 }

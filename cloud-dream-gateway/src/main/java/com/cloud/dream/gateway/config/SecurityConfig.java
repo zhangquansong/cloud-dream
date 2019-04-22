@@ -10,7 +10,7 @@ package com.cloud.dream.gateway.config;
 //@Configuration
 //@EnableWebSecurity
 //@Order(99)
-public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
+public class SecurityConfig /*extends WebSecurityConfigurerAdapter */ {
     /*@Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();

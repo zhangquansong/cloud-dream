@@ -148,6 +148,11 @@
             <artifactId>cloud-dream-commons-utils</artifactId>
             <version>${cloud.dream.commons.utils.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.cloud.dream</groupId>
+            <artifactId>cloud-dream-fescar</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

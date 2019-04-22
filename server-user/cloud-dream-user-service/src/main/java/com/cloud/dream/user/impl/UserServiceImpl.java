@@ -1,15 +1,20 @@
 package com.cloud.dream.user.impl;
 
+import com.alibaba.fescar.spring.annotation.GlobalTransactional;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.cloud.dream.commons.utils.Constants;
+import com.cloud.dream.commons.utils.R;
 import com.cloud.dream.user.UserService;
 import com.cloud.dream.user.entity.User;
+import com.cloud.dream.user.feign.VersionFeign;
 import com.cloud.dream.user.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,13 +23,16 @@ import java.util.List;
  * @Date : 2019/3/19 0019 下午 4:20
  * @Description :用户基本CURD操作实现类
  **/
+@Slf4j
 @Service
-@Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private VersionFeign versionFeign;
 
 
     /**
@@ -39,12 +47,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.selectList(null);
     }
 
+    @GlobalTransactional(name = "cloudDreamUserSave")
     @Override
     public void saveUser() {
         User user = new User();
         user.setUserLoginName("11");
-        user.setUserName("22");
+        user.setUserName(String.valueOf(new Date()));
         this.insert(user);
+        R cloudDreamVersion = versionFeign.getCloudDreamVersion("111");
+        log.info("cloudDreamVersion:{}", cloudDreamVersion);
     }
 
     /**
