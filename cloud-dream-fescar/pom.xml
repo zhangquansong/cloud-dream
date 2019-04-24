@@ -15,7 +15,7 @@
     <description>cloud-dream-fescar</description>
 
     <properties>
-        <fescar.version>0.1.3</fescar.version>
+        <fescar.version>0.4.2</fescar.version>
         <spring.boot.version>2.0.2.RELEASE</spring.boot.version>
         <java.version>1.8</java.version>
     </properties>

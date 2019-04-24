@@ -81,12 +81,12 @@ public class UserController {
         log.info("cloudDream:{},version:{}", cloudDream, version);
         UserLoginVO userLoginVO = JSONObject.parseObject(user, UserLoginVO.class);
         System.out.println(userLoginVO);
-        R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
-        log.info("cloudDreamVersion:{}", cloudDreamVersion);
+        userService.saveUser();
+//        R cloudDreamVersion = versionFeign.getCloudDreamVersion(cloudDream);
+//        log.info("cloudDreamVersion:{}", cloudDreamVersion);
 //        R<User> userR = restTemplate.getForObject("http://127.0.0.1:8783/user/getCloudDream?version=1", R.class);
 //        R<User> userR = restTemplate.getForObject("http://cloud-dream-server-version/user/getCloudDream?version=1", R.class);
-//        userService.saveUser();
-        return cloudDreamVersion;
+        return R.successResponse();
     }
 
     @GetMapping("/saveUser")

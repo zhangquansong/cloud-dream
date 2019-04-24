@@ -1,5 +1,7 @@
 package com.cloud.dream.fescar.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.fescar.rm.datasource.DataSourceProxy;
 import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
 import com.cloud.dream.fescar.filter.FescarRMRequestFilter;
 import com.cloud.dream.fescar.interceptor.FescarRestInterceptor;
@@ -10,6 +12,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 
+import javax.sql.DataSource;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 

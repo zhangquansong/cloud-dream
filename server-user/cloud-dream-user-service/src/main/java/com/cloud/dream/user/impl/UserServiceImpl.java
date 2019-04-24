@@ -47,12 +47,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.selectList(null);
     }
 
-    @GlobalTransactional(name = "cloudDreamUserSave")
     @Override
+    @GlobalTransactional(name = "cloudDreamUserSave")
     public void saveUser() {
         User user = new User();
         user.setUserLoginName("11");
-        user.setUserName(String.valueOf(new Date()));
+        user.setUserName("22");
         this.insert(user);
         R cloudDreamVersion = versionFeign.getCloudDreamVersion("111");
         log.info("cloudDreamVersion:{}", cloudDreamVersion);

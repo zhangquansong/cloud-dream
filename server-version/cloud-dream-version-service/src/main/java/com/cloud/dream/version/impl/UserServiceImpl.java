@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,12 +36,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.selectList(null);
     }
 
-    @Transactional(rollbackFor = RuntimeException.class)
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public void saveUser() {
         User user = new User();
         user.setUserLoginName("11");
-        user.setUserName("22version" + new Date());
+        user.setUserName("22version");
         this.insert(user);
         throw new RuntimeException("我就是故意出错");
     }
