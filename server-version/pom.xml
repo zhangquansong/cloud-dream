@@ -31,6 +31,8 @@
         <mybatisplus.spring.boot.starter.version>1.0.5</mybatisplus.spring.boot.starter.version>
         <cloud.dream.commons.utils.version>0.0.1-SNAPSHOT</cloud.dream.commons.utils.version>
 
+        <seata.version>0.5.0</seata.version>
+
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <dao.version>0.0.1-SNAPSHOT</dao.version>
         <service.version>0.0.1-SNAPSHOT</service.version>
@@ -148,10 +150,40 @@
             <artifactId>cloud-dream-commons-utils</artifactId>
             <version>${cloud.dream.commons.utils.version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.cloud.dream</groupId>
             <artifactId>cloud-dream-fescar</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>-->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring</artifactId>
+            <version>${seata.version}</version>
+        </dependency>
+
+        <!--dependency for Apache Dubbo-->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-dubbo</artifactId>
+            <version>${seata.version}</version>
+        </dependency>
+
+        <!--dependency for Alibaba Dubbo-->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-dubbo-alibaba</artifactId>
+            <version>${seata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-seata</artifactId>
+            <version>0.9.0.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-spring</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

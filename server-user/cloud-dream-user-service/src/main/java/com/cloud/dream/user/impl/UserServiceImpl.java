@@ -1,6 +1,5 @@
 package com.cloud.dream.user.impl;
 
-import com.alibaba.fescar.spring.annotation.GlobalTransactional;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.cloud.dream.commons.utils.Constants;
@@ -9,12 +8,11 @@ import com.cloud.dream.user.UserService;
 import com.cloud.dream.user.entity.User;
 import com.cloud.dream.user.feign.VersionFeign;
 import com.cloud.dream.user.mapper.UserMapper;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    @GlobalTransactional(name = "cloudDreamUserSave")
+    @GlobalTransactional
     public void saveUser() {
         User user = new User();
         user.setUserLoginName("11");

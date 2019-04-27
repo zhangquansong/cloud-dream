@@ -13,7 +13,6 @@ import com.cloud.dream.user.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @ClassName : UserExtendServiceImpl
@@ -22,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @Description :用户复杂业务操作Service实现类
  **/
 @Service
-@Transactional
 public class UserExtendServiceImpl extends ServiceImpl<UserMapper, User> implements UserExtendService {
 
     @Autowired
