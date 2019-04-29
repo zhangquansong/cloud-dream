@@ -12,6 +12,7 @@ import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -46,14 +47,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    @GlobalTransactional
-    public void saveUser() {
+//    @GlobalTransactional
+    @Transactional
+    public void saveUser() throws Exception{
         User user = new User();
         user.setUserLoginName("11");
         user.setUserName("22");
         this.insert(user);
         R cloudDreamVersion = versionFeign.getCloudDreamVersion("111");
-        log.info("cloudDreamVersion:{}", cloudDreamVersion);
+        log.info("cloudDreamVersion:{}", cloudDreamVersion.toString());
     }
 
     /**

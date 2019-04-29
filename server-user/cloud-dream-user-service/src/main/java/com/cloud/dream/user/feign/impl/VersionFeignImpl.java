@@ -1,5 +1,6 @@
 package com.cloud.dream.user.feign.impl;
 
+import com.cloud.dream.commons.exception.MyException;
 import com.cloud.dream.commons.utils.R;
 import com.cloud.dream.user.feign.VersionFeign;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ public class VersionFeignImpl implements VersionFeign {
 
     @Override
     public R getCloudDreamVersion(String version) {
-        return R.errorResponse();
+        throw new MyException("请求Version失败");
+//        return R.errorResponse();
     }
 }

@@ -22,7 +22,7 @@ public interface UserService extends IService<User> {
      **/
     List<User> listAll();
 
-    void saveUser();
+    void saveUser()throws Exception;
 
     /**
      * 根据登录名和密码查询可用用户信息

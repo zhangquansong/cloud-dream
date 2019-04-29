@@ -1,6 +1,7 @@
 package com.cloud.dream.gateway.exception;
 
 
+import com.cloud.dream.commons.exception.MyException;
 import com.cloud.dream.commons.utils.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,6 +96,10 @@ public class JsonExceptionHandler implements ErrorWebExceptionHandler {
             HttpClientErrorException httpClientErrorException = (HttpClientErrorException) ex;
             httpStatus = HttpStatus.TOO_MANY_REQUESTS;
             body = httpClientErrorException.getStatusText();
+        } else if (ex instanceof MyException) {
+            MyException myException = (MyException) ex;
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+            body = myException.getMsg();
         } else {
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
             body = "Internal Server Error";

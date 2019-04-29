@@ -199,6 +199,31 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <!--<finalName>${project.artifactId}</finalName>-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>**/*.yml</exclude>
+                </excludes>
+            </resource>
+            <!--指定资源的位置 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.ftl</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
     <profiles>
         <!-- 测试环境 -->
         <profile>

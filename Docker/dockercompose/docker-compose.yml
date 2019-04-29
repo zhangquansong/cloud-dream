@@ -1,0 +1,272 @@
+﻿version: '3'
+services:
+  eureka-server:              #自定义服务名--注册中心
+    hostname: eureka-server
+    image: clt/eureka-server        #镜像名称
+    ports:
+      - "8761:8761"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8761"      #自定义参数用于给服务的配置文件传递参数  
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost      
+      
+
+  eureka-server-2:              #自定义服务名--注册中心
+    hostname: eureka-server-2
+    image: clt/eureka-server-2        #镜像名称
+    ports:
+      - "8762:8762"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8762"      #自定义参数用于给服务的配置文件传递参数
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost          
+
+
+  eureka-server-3:              #自定义服务名--注册中心
+    hostname: eureka-server-3
+    image: clt/eureka-server-3        #镜像名称
+    ports:
+      - "8763:8763"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8763"      #自定义参数用于给服务的配置文件传递参数
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+  service-feign:              #自定义服务名--serice-feign
+    hostname: service-feign
+    image: clt/service-feign        #镜像名称
+    ports:
+      - "8765:8765"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8765"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+
+  service-feign-2:              #自定义服务名--serice-feign
+    hostname: service-feign-2
+    image: clt/service-feign-2        #镜像名称
+    ports:
+      - "8775:8775"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8775"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"    
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+  service-ribbon:              #自定义服务名--serice-feign
+    hostname: service-ribbon
+    image: clt/service-ribbon        #镜像名称
+    ports:
+      - "8764:8764"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8764"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"    
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+  service-ribbon-2:              #自定义服务名--serice-feign
+    hostname: service-ribbon-2
+    image: clt/service-ribbon-2        #镜像名称
+    ports:
+      - "8774:8774"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8774"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"    
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost      
+
+
+  service-zuul:              #自定义服务名--serice-feign
+    hostname: service-zuul
+    image: clt/service-zuul        #镜像名称
+    ports:
+      - "8769:8769"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8769"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"   
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost       
+
+
+
+  # config-server:              #自定义服务名--serice-feign
+  #   hostname: config-server
+  #   image: clt/config-server        #镜像名称
+  #   ports:
+  #     - "8888:8888"            #映射的端口
+  #   environment:               #环境变量
+  #     SERVER_PORT: "8888"      #自定义参数用于给服务的配置文件传递参数
+  #   links:
+  #     - "eureka-server"
+  #     - "eureka-server-2"
+  #     - "eureka-server-3"   
+  #   networks:
+  #      backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+  #       aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+  #        - localhost 
+
+  # config-client:              #自定义服务名--serice-feign
+  #   hostname: config-client
+  #   image: clt/config-client        #镜像名称
+  #   ports:
+  #     - "8881:8881"            #映射的端口
+  #   environment:               #环境变量
+  #     SERVER_PORT: "8881"      #自定义参数用于给服务的配置文件传递参数
+  #   links:
+  #     - "eureka-server"
+  #     - "eureka-server-2"
+  #     - "eureka-server-3"   
+  #   networks:
+  #      backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+  #       aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+  #        - localhost    
+
+  # config-client-2:              #自定义服务名--serice-feign
+  #   hostname: config-client-2
+  #   image: clt/config-client-2        #镜像名称
+  #   ports:
+  #     - "8882:8882"            #映射的端口
+  #   environment:               #环境变量
+  #     SERVER_PORT: "8882"      #自定义参数用于给服务的配置文件传递参数
+  #   links:
+  #     - "eureka-server"
+  #     - "eureka-server-2"
+  #     - "eureka-server-3"   
+  #   networks:
+  #      backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+  #       aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+  #        - localhost   
+
+  server-zipkin:              #自定义服务名--serice-feign
+    hostname: server-zipkin
+    image: clt/server-zipkin        #镜像名称
+    ports:
+      - "9411:9411"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "9411"      #自定义参数用于给服务的配置文件传递参数 
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+  service-zipkin-hi:              #自定义服务名--serice-feign
+    hostname: service-zipkin-hi
+    image: clt/service-zipkin-hi        #镜像名称
+    ports:
+      - "8988:8988"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8988"      #自定义参数用于给服务的配置文件传递参数
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+  service-turbine:              #自定义服务名--serice-feign
+    hostname: service-turbine
+    image: clt/service-turbine        #镜像名称
+    ports:
+      - "8999:8999"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8999"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+                            
+  service-miya:              #自定义服务名--serice-feign
+    hostname: service-miya
+    image: clt/service-miya        #镜像名称
+    ports:
+      - "8989:8989"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8989"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+       
+  api-web:              #自定义服务名--serice-feign
+    hostname: api-web
+    image: clt/api-web        #镜像名称
+    ports:
+      - "8782:8782"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8782"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"                                
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+  api-rabbitmq-receiver:              #自定义服务名--serice-feign
+    hostname: api-rabbitmq-receiver
+    image: clt/api-rabbitmq-receiver        #镜像名称
+    ports:
+      - "8485:8485"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8485"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "eureka-server"
+      - "eureka-server-2"
+      - "eureka-server-3"                                
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+
+
+networks:
+  backend:
