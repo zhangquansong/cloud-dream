@@ -43,6 +43,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUserLoginName("11");
         user.setUserName("22version");
         this.insert(user);
-        throw new RuntimeException("我就是故意出错");
+//        throw new RuntimeException("我就是故意出错");
     }
 }

@@ -178,20 +178,21 @@
              <artifactId>cloud-dream-fescar</artifactId>
              <version>0.0.1-SNAPSHOT</version>
          </dependency>-->
-        <dependency>
+
+        <!--<dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-spring</artifactId>
             <version>${seata.version}</version>
         </dependency>
 
-        <!--dependency for Apache Dubbo-->
+        &lt;!&ndash;dependency for Apache Dubbo&ndash;&gt;
         <dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-dubbo</artifactId>
             <version>${seata.version}</version>
         </dependency>
 
-        <!--dependency for Alibaba Dubbo-->
+        &lt;!&ndash;dependency for Alibaba Dubbo&ndash;&gt;
         <dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-dubbo-alibaba</artifactId>
@@ -207,7 +208,7 @@
                     <artifactId>seata-spring</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -271,7 +272,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>application.yml</include>
+                    <include>**/*.yml</include>
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
                     <include>**/*.ftl</include>

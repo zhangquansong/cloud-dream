@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: cloud-dream-server-user
-  main:
-    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+#  main:
+#    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
@@ -59,7 +59,7 @@ spring:
           retry:
             enabled: true
   redisson:
-    address: "redis://10.0.131.236:6379"
+    address: "redis://127.0.0.1:6379"
   redis:
     host: 127.0.0.1
     port: 6379
@@ -76,10 +76,10 @@ spring:
       nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
     timeout: 0
 
-  cloud:
-    alibaba:
-      seata:
-        tx-service-group: my_test_tx_group
+#  cloud:
+#    alibaba:
+#      seata:
+#        tx-service-group: my_test_tx_group
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   #实体扫描，多个package用逗号或者分号分隔

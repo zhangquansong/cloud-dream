@@ -61,7 +61,7 @@ public class UserController {
         return R.successResponse(userService.findUserByUserId(userId));
     }
 
-    /*@HystrixCommand(
+    @HystrixCommand(
 //            fallbackMethod = "xx方法",
             threadPoolKey = "getCloudDreamVersionThreadPool",
             threadPoolProperties = {
@@ -75,7 +75,7 @@ public class UserController {
                     @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "150000"),
                     @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "5"),
             }
-    )*/
+    )
     @GetMapping("/getCloudDream")
     public R getCloudDream(@RequestParam String version, @RequestHeader String user) throws  Exception{
         log.info("cloudDream:{},version:{}", cloudDream, version);

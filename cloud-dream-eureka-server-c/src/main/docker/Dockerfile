@@ -1,4 +1,5 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+#FROM frolvlad/alpine-oraclejdk8:slim
+FROM frolvlad/alpine-oraclejre8:latest
 VOLUME /tmp
 ADD cloud-dream-eureka-server-c-0.0.1-SNAPSHOT.jar app.jar
 # RUN bash -c 'touch /app.jar'
