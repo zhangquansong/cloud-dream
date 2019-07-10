@@ -16,7 +16,7 @@ public class VersionFeignImpl implements VersionFeign {
 
     @Override
     public R getCloudDreamVersion(String version) {
-        throw new MyException("请求Version失败");
-//        return R.errorResponse();
+//        throw new MyException("请求Version失败");
+        return R.errorResponse();
     }
 }
