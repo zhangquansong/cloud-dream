@@ -16,7 +16,7 @@
     </parent>
     <groupId>com.cloud.dream</groupId>
     <artifactId>server-version</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>server-version</name>
     <description>server-version</description>
 
@@ -29,14 +29,14 @@
         <mybatis.plus.version>2.1-gamma</mybatis.plus.version>
         <fastjson.version>1.2.31</fastjson.version>
         <mybatisplus.spring.boot.starter.version>1.0.5</mybatisplus.spring.boot.starter.version>
-        <cloud.dream.commons.utils.version>0.0.1-SNAPSHOT</cloud.dream.commons.utils.version>
+        <cloud.dream.commons.utils.version>0.0.1</cloud.dream.commons.utils.version>
 
         <seata.version>0.5.0</seata.version>
 
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-        <dao.version>0.0.1-SNAPSHOT</dao.version>
-        <service.version>0.0.1-SNAPSHOT</service.version>
-        <getaway.version>0.0.1-SNAPSHOT</getaway.version>
+        <dao.version>0.0.1</dao.version>
+        <service.version>0.0.1</service.version>
+        <getaway.version>0.0.1</getaway.version>
     </properties>
 
     <dependencies>
