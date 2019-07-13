@@ -1,13 +1,13 @@
-package com.cloud.dream.user.impl;
+package com.cloud.dream.stream.consumer.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.cloud.dream.commons.utils.Constants;
 import com.cloud.dream.commons.utils.R;
-import com.cloud.dream.user.UserService;
-import com.cloud.dream.user.entity.User;
-import com.cloud.dream.user.feign.VersionFeign;
-import com.cloud.dream.user.mapper.UserMapper;
+import com.cloud.dream.stream.consumer.UserService;
+import com.cloud.dream.stream.consumer.entity.User;
+import com.cloud.dream.stream.consumer.feign.VersionFeign;
+import com.cloud.dream.stream.consumer.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,54 +55,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         this.insert(user);
         R cloudDreamVersion = versionFeign.getCloudDreamVersion("111");
         log.info("cloudDreamVersion:{}", cloudDreamVersion.toString());
-    }
-
-    /**
-     * @param user
-     * @return void
-     * @Author zhangquansong
-     * @Description : 新增用户
-     * @Date 17:27 2019/7/13
-     **/
-    @Override
-    public void saveUser(User user) {
-        this.insert(user);
-    }
-
-    /**
-     * @param user
-     * @return void
-     * @Author zhangquansong
-     * @Description :修改用户
-     * @Date 17:16 2019/7/13
-     **/
-    @Override
-    public void updateUser(User user) {
-        this.updateById(user);
-    }
-
-    /**
-     * @param id
-     * @return void
-     * @Author zhangquansong
-     * @Description : 删除用户信息
-     * @Date 17:18 2019/7/13
-     **/
-    @Override
-    public void deleteUser(Long id) {
-        this.deleteById(id);
-    }
-
-    /**
-     * @param id
-     * @return com.cloud.dream.user.entity.User
-     * @Author zhangquansong
-     * @Description : 根据id查询用户信息
-     * @Date 17:19 2019/7/13
-     **/
-    @Override
-    public User findById(Long id) {
-        return this.selectById(id);
     }
 
     /**
