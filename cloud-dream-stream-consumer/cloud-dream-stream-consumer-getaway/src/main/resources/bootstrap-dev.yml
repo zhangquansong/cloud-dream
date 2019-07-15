@@ -9,21 +9,35 @@ spring:
       trace:
         enabled: true
     stream:
+      rabbit: # 进行rabbit的相关绑定配置
+        bindings:
+          study_input:
+            consumer: # 进行消费端配置
+              bindingRoutingKey: study-key # 设置一个RoutingKey信息
       binders: # 在此处配置要绑定的rabbitmq的服务信息；
         defaultRabbit: # 表示定义的名称，用于于binding整合
           type: rabbit # 消息组件类型
-          environment: # 设置rabbitmq的相关的环境配置
-            spring:
-              rabbitmq:
-              host: 127.0.0.1
-              username: zqs
-              password: 123456
-              virtual-host: /
+#          environment: # 设置rabbitmq的相关的环境配置
+#            spring:
+#              rabbitmq:
+#              host: localhost
+#              port: 5672
+#              username: guest
+#              password: guest
+#              virtual-host: /
       bindings: # 服务的整合处理
-        input: # 这个名字是一个通道的名称，在分析具体源代码的时候会进行说明
-          destination: studyExchange # 表示要使用的Exchange名称定义
+        input:
+          destination: queue.log.messages
+          binder: local_rabbit
+          group: logMessageConsumers
+        output:
+          destination: queue.pretty.log.messages
+          binder: local_rabbit
+        study_input: # 这个名字是一个通道的名称，在分析具体源代码的时候会进行说明
+          destination: RKExchange # 表示要使用的Exchange名称定义
           content-type: application/json # 设置消息类型，本次为对象json，如果是文本则设置“text/plain”
           binder: defaultRabbit # 设置要绑定的消息服务的具体设置
+          group: study-group # 进行操作的分组，实际上就表示持久化
   rabbitmq:
     host: localhost
     port: 5672

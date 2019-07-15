@@ -1,5 +1,6 @@
 package com.cloud.dream.user.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.cloud.dream.commons.redis.RedisExtendUtils;
 import com.cloud.dream.commons.result.UserLoginVO;
@@ -10,9 +11,13 @@ import com.cloud.dream.user.UserExtendService;
 import com.cloud.dream.user.UserService;
 import com.cloud.dream.user.entity.User;
 import com.cloud.dream.user.mapper.UserMapper;
+import com.cloud.dream.user.mq.IMessageProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @ClassName : UserExtendServiceImpl
@@ -21,12 +26,15 @@ import org.springframework.stereotype.Service;
  * @Description :用户复杂业务操作Service实现类
  **/
 @Service
+@Slf4j
 public class UserExtendServiceImpl extends ServiceImpl<UserMapper, User> implements UserExtendService {
 
     @Autowired
     private UserService userService;
     @Autowired
     private RedisExtendUtils redisExtendUtils;
+    @Autowired
+    private IMessageProvider messageProvider;
 
     /**
      * @param loginName 登录名
@@ -47,6 +55,8 @@ public class UserExtendServiceImpl extends ServiceImpl<UserMapper, User> impleme
         BeanUtils.copyProperties(user, userLoginVO);
         userLoginVO.setToken(token);
         redisExtendUtils.setLoginToken(userLoginVO, token);//token操作异步
+        messageProvider.send(user); // 消息发送
+        log.info("mq发送成功.user:{}", JSONObject.toJSONString(user));
         return R.successResponse(userLoginVO);
     }
 

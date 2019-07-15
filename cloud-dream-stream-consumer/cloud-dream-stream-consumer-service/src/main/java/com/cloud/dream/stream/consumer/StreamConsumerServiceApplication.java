@@ -1,4 +1,4 @@
-package com.cloud.dream.user;
+package com.cloud.dream.stream.consumer;
 
 public class StreamConsumerServiceApplication {
     public static void main(String[] args) {
