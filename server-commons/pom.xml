@@ -132,7 +132,7 @@
     </build>
 
     <distributionManagement>
-        <repository>
+        <!--<repository>
             <id>releases</id>
             <name>releases</name>
             <url>http://localhost:8081/nexus/content/repositories/releases/</url>
@@ -141,7 +141,13 @@
             <id>snapshots</id>
             <name>my repository group</name>
             <url>http://127.0.0.1:8081/repository/snapshots/</url>
-        </snapshotRepository>
+        </snapshotRepository>-->
+
+        <repository>
+            <id>snapshots</id>
+            <name>my repository group</name>
+            <url>http://127.0.0.1:8081/repository/snapshots/</url>
+        </repository>
     </distributionManagement>
 
 </project>
