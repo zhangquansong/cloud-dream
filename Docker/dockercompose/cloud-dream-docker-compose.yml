@@ -135,6 +135,22 @@ services:
         aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
          - localhost
 
+  cloud-dream-stream-consumer-getaway:              #自定义服务名--serice-feign
+    hostname: cloud-dream-stream-consumer-getaway
+    image: cloud-dream/cloud-dream-stream-consumer-getaway       #镜像名称
+    ports:
+      - "8402:8402"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8402"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"
+    networks:
+      backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+          - localhost
+
   cloud-dream-version-getaway:              #自定义服务名--serice-feign
     hostname: cloud-dream-version-getaway
     image: cloud-dream/cloud-dream-version-getaway       #镜像名称
