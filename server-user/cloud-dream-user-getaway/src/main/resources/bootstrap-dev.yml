@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:8888/
+      uri: http://192.168.241.151:8888/
       label: master
       profile: dev
     bus:
@@ -38,7 +38,7 @@ spring:
           content-type: application/json # 设置消息类型，本次为对象json，如果是文本则设置“text/plain”
           binder: defaultRabbit # 设置要绑定的消息服务的具体设置
   rabbitmq:
-    host: localhost
+    host: 192.168.241.153 #localhost
     port: 5672
 management:
   endpoints:
@@ -47,6 +47,5 @@ management:
         include: bus-refresh
 eureka:
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
-

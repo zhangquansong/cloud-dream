@@ -1,0 +1,171 @@
+﻿version: '3'
+services:
+  cloud-dream-eureka-server-a:              #自定义服务名--注册中心
+    hostname: cloud-dream-eureka-server-a
+    image: cloud-dream/cloud-dream-eureka-server-a        #镜像名称
+    ports:
+      - "8761:8761"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8761"      #自定义参数用于给服务的配置文件传递参数  
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost      
+      
+
+  cloud-dream-eureka-server-b:              #自定义服务名--注册中心
+    hostname: cloud-dream-eureka-server-b
+    image: cloud-dream/cloud-dream-eureka-server-b        #镜像名称
+    ports:
+      - "8762:8762"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8762"      #自定义参数用于给服务的配置文件传递参数
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost          
+
+
+  cloud-dream-eureka-server-c:              #自定义服务名--注册中心
+    hostname: cloud-dream-eureka-server-c
+    image: cloud-dream/cloud-dream-eureka-server-c        #镜像名称
+    ports:
+      - "8763:8763"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8763"      #自定义参数用于给服务的配置文件传递参数
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost   
+
+  cloud-dream-config-server:              #自定义服务名--serice-feign
+    hostname: cloud-dream-config-server
+    image: cloud-dream/cloud-dream-config-server        #镜像名称
+    ports:
+      - "8888:8888"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8888"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"   
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost    
+
+  cloud-dream-zipkin-server:              #自定义服务名--serice-feign
+    hostname: cloud-dream-zipkin-server
+    image: cloud-dream/cloud-dream-zipkin-server       #镜像名称
+    ports:
+      - "9411:9411"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "9411"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"   
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost               
+
+  cloud-dream-hystrix-turbine:              #自定义服务名--serice-feign
+    hostname: cloud-dream-hystrix-turbine
+    image: cloud-dream/cloud-dream-hystrix-turbine        #镜像名称
+    ports:
+      - "8764:8764"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8764"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"   
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost              
+
+  cloud-dream-oauth:              #自定义服务名--serice-feign
+    hostname: cloud-dream-oauth
+    image: cloud-dream/cloud-dream-oauth       #镜像名称
+    ports:
+      - "8016:8016"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8016"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"   
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost                        
+
+  cloud-dream-gateway:              #自定义服务名--serice-feign
+    hostname: cloud-dream-gateway
+    image: cloud-dream/cloud-dream-gateway        #镜像名称
+    ports:
+      - "8095:8095"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8095"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"   
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost              
+
+       
+  cloud-dream-user-getaway:              #自定义服务名--serice-feign
+    hostname: cloud-dream-user-getaway
+    image: cloud-dream/cloud-dream-user-getaway       #镜像名称
+    ports:
+      - "8782:8782"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8782"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"                               
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost
+
+  cloud-dream-stream-consumer-getaway:              #自定义服务名--serice-feign
+    hostname: cloud-dream-stream-consumer-getaway
+    image: cloud-dream/cloud-dream-stream-consumer-getaway       #镜像名称
+    ports:
+      - "8402:8402"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8402"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"
+    networks:
+      backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+          - localhost
+
+  cloud-dream-version-getaway:              #自定义服务名--serice-feign
+    hostname: cloud-dream-version-getaway
+    image: cloud-dream/cloud-dream-version-getaway       #镜像名称
+    ports:
+      - "8783:8783"            #映射的端口
+    environment:               #环境变量
+      SERVER_PORT: "8783"      #自定义参数用于给服务的配置文件传递参数
+    links:
+      - "cloud-dream-eureka-server-a"
+      - "cloud-dream-eureka-server-b"
+      - "cloud-dream-eureka-server-c"                               
+    networks:
+       backend:     # 使用指定的网络 backend, 并且设置网络别名为 test1，
+        aliases:    # 设置网络别名后，可以在其他容器中 ping test1 访问到该容器
+         - localhost         
+
+networks:
+  backend:

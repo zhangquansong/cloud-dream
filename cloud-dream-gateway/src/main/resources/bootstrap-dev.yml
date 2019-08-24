@@ -30,7 +30,7 @@ spring:
 #                redis-rate-limiter.replenishRate: 1
 #                redis-rate-limiter.burstCapacity: 1
     config:
-      uri: http://localhost:8888/
+      uri: http://192.168.241.151:8888/
       label: master
       profile: dev
     bus:
@@ -38,15 +38,15 @@ spring:
       trace:
         enabled: true
   rabbitmq:
-    host: localhost
+    host: 192.168.241.153 #localhost
     port: 5672
   redis:
-    host: "redis://127.0.0.1:6379" #127.0.0.1
+    host: "redis://192.168.241.152:6379" #127.0.0.1
     port: 6379
     database: 0
     cluster:
-      nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
-#    password: 123456
+      nodes: 192.168.241.152:6379,192.168.241.152:6380,192.168.241.152:6381,192.168.241.152:6382,192.168.241.152:6383,192.168.241.152:6384
+    password:
 management:
   endpoints:
     web:
@@ -54,5 +54,5 @@ management:
         include: bus-refresh
 eureka:
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/

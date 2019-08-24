@@ -10,7 +10,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     druid:
-      url: jdbc:mysql://localhost:8066/TESTDB?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
+      url: jdbc:mysql://192.168.241.151:8666/TESTDB?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
       username: root
       password: 123456
       initial-size: 20
@@ -47,7 +47,7 @@ spring:
     sender:
       type: rabbit
     rabbitmq:
-      host: localhost
+      host: 192.168.241.153 #localhost
       port: 5672
 #      username: lbl
 #      password: 123456
@@ -59,9 +59,9 @@ spring:
           retry:
             enabled: true
   redisson:
-    address: "redis://127.0.0.1:6379"
+    address: "redis://192.168.241.152:6379"
   redis:
-    host: 127.0.0.1
+    host: 192.168.241.152 #127.0.0.1
     port: 6379
     password:
     commandTimeout: 5000
@@ -73,7 +73,7 @@ spring:
         min-idle: 5
     database: 0
     cluster:
-      nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+      nodes: 192.168.241.152:6379,192.168.241.152:6380,192.168.241.152:6381,192.168.241.152:6382,192.168.241.152:6383,192.168.241.152:6384
     timeout: 0
 
 #  cloud:

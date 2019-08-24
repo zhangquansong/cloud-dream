@@ -45,7 +45,7 @@ spring:
     sender:
       type: rabbit
     rabbitmq:
-      host: localhost
+      host: 192.168.241.153 #localhost
       port: 5672
 #      username: lbl
 #      password: 123456

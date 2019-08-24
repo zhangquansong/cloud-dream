@@ -15,6 +15,6 @@ spring:
       label: master                                        #配置git仓库的分支
 eureka:
   client:
-    service-url:
+    serviceUrl:
 #      defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/,http://admin:admin@localhost:8763/eureka/
       defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/

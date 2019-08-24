@@ -12,7 +12,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     druid:
-      url: jdbc:mysql://localhost:8066/TESTDB?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
+      url: jdbc:mysql://192.168.241.151:8666/TESTDB?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
       username: root
       password: 123456
       initial-size: 20
@@ -44,7 +44,7 @@ spring:
 
 eureka:
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
 
 #指明使用mysql存储
@@ -53,7 +53,7 @@ zipkin:
     type: mysql
   collector:
     rabbitmq:
-      addresses: localhost
+      addresses: 192.168.241.153 #localhost
 #      username: lbl
 #      password: 123456
 
