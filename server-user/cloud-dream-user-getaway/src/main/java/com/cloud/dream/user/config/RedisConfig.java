@@ -35,6 +35,9 @@ public class RedisConfig {
     @Autowired
     private RedisConnectionFactory factory;
 
+//    @Value("${cloudDream}")
+//    String cloudDream;//springcloud-config-client从git中获取
+
     @Value("${spring.redis.cluster.nodes}")
     private String clusterNodes;
     @Value("${spring.redisson.address}")
@@ -50,6 +53,7 @@ public class RedisConfig {
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+//        System.out.println(cloudDream+"><>>>>>>>>>>>>>>>>>>>>");
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);

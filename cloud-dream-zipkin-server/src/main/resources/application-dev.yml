@@ -42,10 +42,21 @@ spring:
           config:
             multi-statement-allow: true
 
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
+
 eureka:
+  instance:
+    hostname: cloud-dream-zipkin-server
+#    preferIpAddress: true
   client:
     serviceUrl:
+      #      defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/,http://admin:admin@localhost:8763/eureka/
       defaultZone: http://cloud-dream-eureka-server-a:8761/eureka/,http://cloud-dream-eureka-server-b:8762/eureka/,http://cloud-dream-eureka-server-c:8763/eureka/
+#      defaultZone: http://192.168.241.151:8761/eureka/,http://192.168.241.152:8762/eureka/,http://192.168.241.153:8763/eureka/
+
 
 #指明使用mysql存储
 zipkin:

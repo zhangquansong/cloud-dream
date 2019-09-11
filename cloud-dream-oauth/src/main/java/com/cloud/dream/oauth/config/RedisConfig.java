@@ -37,7 +37,7 @@ public class RedisConfig {
 
     @Value("${spring.redis.cluster.nodes}")
     private String clusterNodes;
-    @Value("${spring.redisson.address}")
+    /*@Value("${spring.redisson.address}")
     private String address;
     @Value("${spring.redis.timeout}")
     private int timeout;
@@ -46,7 +46,7 @@ public class RedisConfig {
     @Value("${spring.redis.lettuce.pool.max-wait}")
     private long maxWaitMillis;
     @Value("${spring.redis.commandTimeout}")
-    private int commandTimeout;
+    private int commandTimeout;*/
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
@@ -124,7 +124,7 @@ public class RedisConfig {
         return locker;
     }
 
-    @Bean
+   /* @Bean
     public JedisCluster getJedisCluster() {
         String[] cNodes = clusterNodes.split(",");
         Set<HostAndPort> nodes = new HashSet<>();
@@ -139,5 +139,5 @@ public class RedisConfig {
         //创建集群对象
         // JedisCluster jedisCluster = new JedisCluster(nodes,commandTimeout);
         return new JedisCluster(nodes, commandTimeout, jedisPoolConfig);
-    }
+    }*/
 }
